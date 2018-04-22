@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/sound5.wav-78614c11a56421e2d3183f74798cc54a.sample"
+
+[deps]
+
+source_file="res://Audio/meh/sound5.wav"
+source_md5="eeb18b600302e6034ad82ba9708d174c"
+
+dest_files=[ "res://.import/sound5.wav-78614c11a56421e2d3183f74798cc54a.sample" ]
+dest_md5="7b16fca3df6212aacdb0e42751df260f"
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0
