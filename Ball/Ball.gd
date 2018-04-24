@@ -1,7 +1,7 @@
 extends KinematicBody2D
 
-export (float) var speed = 450
-export (float) var bounce_factor = 500
+export (float) var speed = 300
+export (float) var bounce_factor = 300
 export (float) var gravity = 100
 export (float) var friction = 1.0
 export(int, "Water", "Glove", "Seed") var mode = 0 setget _set_mode,_get_mode

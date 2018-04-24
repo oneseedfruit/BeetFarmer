@@ -719,6 +719,7 @@ blend_times = [  ]
 [node name="MainMenu" type="CanvasLayer" parent="." index="6"]
 
 pause_mode = 2
+editor/display_folded = true
 layer = 1
 offset = Vector2( 0, 0 )
 rotation = 0.0

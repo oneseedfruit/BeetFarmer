@@ -6,8 +6,10 @@ var is_game_over = false
 const WATER_COST = 10.0
 const SEED_COST = 30.0
 const GLOVE_ENERGY = 10.0
+
+const MAX_MONEY_GAIN = 1000.0
+
 const _STOMACH_CAPACITY = 1000.0
-const _MONEY_CAPACITY = 1000.0
 const _DUES_INCREMENT = 5.0
 
 var max_ball = 3
