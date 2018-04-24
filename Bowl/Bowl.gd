@@ -8,6 +8,6 @@ func _on_Timer_timeout():
 			if !$BowlAnimation.is_playing() || $BowlAnimation.current_animation != "eat":
 					$BowlAnimation.play("eat")
 			child.queue_free()
-			var energy_gain = child._water_consumed * 5000.0 * get_process_delta_time()
+			var energy_gain = child._water_consumed * 2000.0 * get_process_delta_time()
 			get_tree().root.get_node("Game").stomach += energy_gain
 			get_tree().root.get_node("Game").stomach = clamp(get_tree().root.get_node("Game").stomach, 0, _Game._STOMACH_CAPACITY)
