@@ -10,7 +10,7 @@ const GLOVE_ENERGY = 10.0
 const MAX_MONEY_GAIN = 1000.0
 
 const _STOMACH_CAPACITY = 1000.0
-const _DUES_INCREMENT = 25.0
+const _DUES_INCREMENT = 5.0
 
 var max_ball = 3
 var ball_count = 0
@@ -36,10 +36,13 @@ func _get_stomach():
 	
 func _set_money(value):
 	if value < money:
-		if $UI:
-			if !$UI/UIAnimation.is_playing():
-				$UI/UIAnimation.play("animate_money")
+		animate_money_UI()
 	money = value
+
+func animate_money_UI():
+	if $UI:
+		if !$UI/UIAnimation.is_playing():
+			$UI/UIAnimation.play("animate_money")
 
 func _ready():	
 	get_tree().paused = true
