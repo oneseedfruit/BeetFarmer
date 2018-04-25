@@ -23,7 +23,7 @@ var _sound = [preload("res://Audio/sound1.wav"),
 			preload("res://Audio/sound7.wav")]
 
 func _set_mode(value):
-	if $Sprite:
+	if $Sprite != null:
 		if value == 0:
 			$Sprite.frame = 9
 		elif value == 1:
@@ -94,19 +94,22 @@ func _on_BallArea_area_entered(area):
 					_crop1.till = till.get_parent()
 					till.add_child(_crop1)		
 					_crop1.till = till.get_parent()
-					_crop1 = null
+					_crop1 = null					
 					self.mode = 1
 	
 	if area.name.find("Crop") > -1:		
 		if mode == 1 && area.growth_stage >= 4:			
 			if _crop1 == null:
+				if area.get_parent().name.find("Pos") > -1:					
+					area.get_parent().get_parent().get_parent()._crop1 = null
 				_crop1 = _CropScene.instance()
 				_crop1._water_consumed = area._water_consumed
 				_crop1.growth_stage = area.growth_stage
 				$CropHolder/Pos2.add_child(_crop1)
 				_crop1.show_behind_parent = true
 				_crop1.position += Vector2(0, 10)
-				area.get_parent().remove_child(area)			
+				area.get_parent().remove_child(area)
+				area.queue_free()
 				
 	if area.name.find("ShippingBox") > -1 || area.name.find("Bowl") > -1:
 		print("Shipping!")

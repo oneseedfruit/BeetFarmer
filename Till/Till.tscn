@@ -16,7 +16,7 @@ hframes = 4
 frame = 5
 script = ExtResource( 2 )
 _sections_unfolded = [ "Animation", "Z Index" ]
-dry_rate = 5.0
+dry_rate = 8.0
 
 [node name="Till" type="Area2D" parent="." index="0"]
 
