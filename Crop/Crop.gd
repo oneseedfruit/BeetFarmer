@@ -2,6 +2,7 @@ extends Area2D
 
 export (int, "Seed", "Sprout", "Sapling", "Plant", "Veggie") var growth_stage = 0 setget _set_growth_stage,_get_growth_stage
 export (float) var water_consumption_rate = 1.5 
+export (float) var max_water_consumed = 50.0
 
 var till
 
@@ -19,7 +20,7 @@ func _get_growth_stage():
 
 func _process(delta):
 	if till:
-		if till.wetness > 0:
+		if till.wetness > 0 && _water_consumed < max_water_consumed:
 			till.wetness -= water_consumption_rate * delta
 			_water_consumed += water_consumption_rate * delta
 			
@@ -31,9 +32,9 @@ func _process(delta):
 			if _water_consumed > _last_water_consumed + _water_needed_to_grow:
 				_last_water_consumed = _water_consumed
 				self.growth_stage += 1
-		
+							
 		if _water_consumed < 0:
-			$Sprite.modulate = Color(1, 0.5, 1, 1)
+			$Sprite.modulate = Color(0.3, 0.3, 0.3, 1)
 		else:
 			$Sprite.modulate = Color(1, 1, 1, 1)
 

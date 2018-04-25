@@ -1,6 +1,6 @@
 extends Sprite
 
-export (float) var dry_rate = 5.0
+export (float) var dry_rate = 8.0
 
 const _MAX_WETNESS = 100.0
 var wetness = 0.0 setget _set_wetness,_get_wetness
@@ -21,7 +21,7 @@ func _get_wetness():
 	return wetness
 
 func _process(delta):
-	if _is_being_watered:
+	if _is_being_watered && self.wetness < _MAX_WETNESS:
 		self.wetness += _watered_rate * delta
 	
 	if wetness < 0.0:
