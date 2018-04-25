@@ -57,4 +57,4 @@ func _process(delta):
 	
 func _on_Timer_timeout():
 	self.money -= dues
-	dues += _DUES_INCREMENT
+	dues += dues * 2 + _DUES_INCREMENT
