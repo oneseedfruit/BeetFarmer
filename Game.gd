@@ -10,7 +10,7 @@ const GLOVE_ENERGY = 10.0
 const MAX_MONEY_GAIN = 1000.0
 
 const _STOMACH_CAPACITY = 1000.0
-const _DUES_INCREMENT = 5.0
+const _DUES_INCREMENT = 25.0
 
 var max_ball = 3
 var ball_count = 0
@@ -57,4 +57,4 @@ func _process(delta):
 	
 func _on_Timer_timeout():
 	self.money -= dues
-	dues += dues * 2 + _DUES_INCREMENT
+	dues += _DUES_INCREMENT
