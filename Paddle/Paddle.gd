@@ -70,21 +70,27 @@ func _process(delta):
 	if _Game.ball_count < _Game.max_ball:
 		if Input.is_action_just_pressed("launch"):
 			if (launch_mode == 0 && _Game.money > _Game.WATER_COST) || (launch_mode >= 1 && _Game.stomach > _Game.GLOVE_ENERGY) || (launch_mode >= 2 && _Game.money > _Game.SEED_COST):
-				var ball = _BallScene.instance()
-				ball.position = position + Vector2(0, -20)
-				if launch_mode == 0:
-					_Game.money -= _Game.WATER_COST
-				if launch_mode == 1:
-					_Game.stomach -= _Game.GLOVE_ENERGY
-				if launch_mode == 2:
-					_Game.stomach -= _Game.GLOVE_ENERGY
-#					if _Game.seeds > 0:
-#						_Game.seeds -= 1
-#					else: 
-#						self.launch_mode = 1
-#						ball.mode = 1
-					_Game.money -= _Game.SEED_COST
-				ball.mode = launch_mode
-				_Game.add_child(ball)
-				_Game.ball_count += 1
+				if launch_mode == 2 && _Game.money > _Game.SEED_COST || launch_mode != 2:	
+					var ball = _BallScene.instance()
+					ball.position = position + Vector2(0, -20)
+					if launch_mode == 0:
+						_Game.money -= _Game.WATER_COST
+					if launch_mode == 1:
+						_Game.stomach -= _Game.GLOVE_ENERGY
+					if launch_mode == 2:
+						_Game.stomach -= _Game.GLOVE_ENERGY
+	#					if _Game.seeds > 0:
+	#						_Game.seeds -= 1
+	#					else: 
+	#						self.launch_mode = 1
+	#						ball.mode = 1
+						_Game.money -= _Game.SEED_COST
+					ball.mode = launch_mode
+					_Game.add_child(ball)
+					_Game.ball_count += 1
+				
+				else:
+					_Game.animate_money_UI()
+			else:
+				_Game.animate_money_UI()
 				
