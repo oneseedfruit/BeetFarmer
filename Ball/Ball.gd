@@ -1,9 +1,10 @@
 extends KinematicBody2D
 
-export (float) var speed = 300
-export (float) var bounce_factor = 300
-export (float) var gravity = 100
-export (float) var friction = 1.0
+export (float) var speed_x = 300
+export (float) var speed_y = 500
+export (float) var bounce_factor = 2000
+export (float) var gravity = 300
+export (float) var friction = 1
 export(int, "Water", "Glove", "Seed") var mode = 0 setget _set_mode,_get_mode
 export (float) var wet_rate = 50.0
 export (float) var max_planting_speed = 500
@@ -42,22 +43,25 @@ func _physics_process(delta):
 	# if there is a collision
 	if _col_info:
 		# if colliding with a paddle
-		if _col_info.collider.name.find("Paddle") > -1 || _col_info.collider.name.find("Bowl") > -1  || _col_info.collider.name.find("ShippingBox") > -1 :
-			speed = -speed # bounce in the opposite direction
-			_velocity.y = 0 # reset gravity when on paddle
+		if _col_info.collider.name.find("Paddle") > -1:			
+			_velocity.x = (position - _col_info.collider.position).normalized().x * speed_x
+
+			_velocity.y = 0 # reset gravity when on paddle, prevents increased bounce speed_x
 			_velocity.y += (position.y - _col_info.position.y) * bounce_factor * delta # ascend or descend based on collision
-	
-			_velocity.x = (position - _col_info.collider.position).normalized().x * speed
-						
-	if position.x <= 0 || position.x > get_viewport_rect().size.x:
-		_velocity.x = -_velocity.x
+							
+	if position.x <= 0: # if ball at left edge
+		_velocity.x = abs(_velocity.x) # bounce ball to the right
+		_velocity.x = clamp(_velocity.x, -speed_x * 0.5, speed_x * 0.5)	# half the ball's bounce back speed_x at edges
+	elif position.x > get_viewport_rect().size.x: # if ball at right edge
+		_velocity.x = -abs(_velocity.x) # bounce ball to the left
+		_velocity.x = clamp(_velocity.x, -speed_x * 0.5, speed_x * 0.5)	# half the ball's bounce back speed_x at edges
 	
 	if position.y <= 0:
 		_velocity.y = -_velocity.y
 			
 	_velocity.y += gravity * delta
-	_velocity.x = clamp(_velocity.x, -speed, speed)
-	_velocity.y = clamp(_velocity.y, -speed, speed)
+	_velocity.x = clamp(_velocity.x, -speed_x, speed_x)
+	_velocity.y = clamp(_velocity.y, -speed_y, speed_y)
 	
 	if _velocity.x > 0:
 		_velocity.x -= friction * delta

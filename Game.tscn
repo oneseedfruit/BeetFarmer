@@ -489,7 +489,7 @@ Label/fonts/font = null
 Label/styles/normal = SubResource( 22 )
 _sections_unfolded = [ "Label", "Label/colors", "Label/constants", "Label/fonts", "Label/styles" ]
 
-[node name="Game" type="Node2D" index="0"]
+[node name="Game" type="Node2D"]
 
 script = ExtResource( 1 )
 _sections_unfolded = [ "Transform" ]
